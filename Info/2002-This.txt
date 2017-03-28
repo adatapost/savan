@@ -1,0 +1,115 @@
+"this" keyword
+=============================================================
+
+"this" is a reserved word or keyword and it holds current object reference within the instance method and not in the static method. So when you need the current object reference in "instance" method just use the "this".
+
+There are many usage of "this" keyword :
+
+1. Qualifies instance members where name of some entities conflict with name of parameters or methods or fields.
+
+public class Point
+{
+  int x,y;
+  public Point()
+  {
+    x = 0;
+    y = 0; 
+   }
+  public Point(int x,int y) 
+  {
+    this.x = x;
+    this.y = y;
+   }
+   public void SetX(int x)
+   {
+     this.x = x;
+    }
+   public int GetX() { return x; }
+   public void SetY(int y) { this.y = y; }
+   public int GetY() { return y; }
+   public void SetPoint(int x, int y)
+   {
+     this.x = x;
+     this.y = y;
+    }
+}
+
+class Test
+{
+ static void Main()
+  {
+    Point p = new Point();
+    Point q = new Point(10,20);
+    
+    p.SetX(20);
+    Console.WriteLine(p.GetX() + " " + p.GetY());
+    Console.WriteLine(q.GetX() + " " + q.GetY());
+
+    p.SetPoint(66,77);
+    Console.WriteLine(p.GetX() + " " + p.GetY());
+   }
+}
+
+
+Example: Write a method Max() which returns an object reference of the maximum point object
+
+Add followinf method into "Point" class
+
+public Point Max(Point other)
+{
+   if(x >= other.x && y >=other.y)  
+     return this;
+   return other;
+}
+
+and code in Main() method:
+
+  Point a = new Point(20,30);
+  Point b = new Point(55,77);
+
+  Point mx = a.Max(b);  // or b.Max(a);
+  Console.WriteLine( mx.GetX() + " " + mx.GetY() );
+
+a.Max(b) --- in this statement, "a" reference will be an active object and "this" keyword hold reference of "a"
+b.Max(a) --- in this statement, "b" reference will be an active object and "this" keyword hold reference of "b"
+
+   So, in above methods, we're passing two objects; first object (which is an active) whose address will be
+			passed automatically to the "this" and second object's reference will be assigned to
+			the parameter "Point other".
+
+ So,    xxxxx.MethodName(arg1,arg2.....)
+         ^                ^
+         |                |----------------- Explicit argument(s)
+        Implicit or
+	Automatic
+	argument
+   
+        Every instance method must have one and only one "Implicit' argument and which is an object refrence.
+
+
+
+2. To invoke/call the instance constructor from another instance constructor.
+
+public class Student
+{
+  private int roll;
+  private string name;
+
+  
+  public Student(int roll, string name)
+   {
+     this.roll = roll;
+     this.name = name;
+    }
+  public Student() : this(0,"") 
+  { }
+  public Student(string name, int roll) : this(roll,name)
+  { }
+  //Getters and Setter ,,,,
+}
+
+code in main:
+
+   Student a = new Student();
+   Student b = new Student("Raj",30);
+

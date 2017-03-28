@@ -1,0 +1,168 @@
+The "class" keyword
+===================
+
+The "class" keyword is used to create a new datatype/type.
+
+The TYPE created using class keyword is known as "class type".
+
+A TYPE is a collection of related fields or data members and member functions or method.
+
+This is the way we can achieve the data-encapsulation and data-abstraction.
+
+A TYPE created using "class", "interface" or "delegate" keyword is known as "Reference Type".
+
+General Syntax:
+
+access_modifiers class  YourClassName : [SuperClass], [Interface1, Interface2,....]
+{
+  //Fields or data members
+  datatype fieldName;
+  .....
+  .....
+  
+  //Methods or member functions
+  ....
+  ....
+  
+  //Nested Types
+  .....
+}
+
+Why we need datatype?
+---------------------
+Datatype is the primary unit of program and also it is a program to solve the problems. We've started programming (different languages) by learning char,float,int etc simple types, then arrays - functions - pointers etc and then
+complex types created using struct, class, interface etc.
+
+Here, we want to know and learn the internal working of TYPES. How these TYPES are designed? (CTS TYPES) and how to use them? What kind of restrictions or code securities added with these types? To know all these things, we first must have to learn to create a type from the scratch and use them in our own but different ways.
+
+So, we will learn to create a "class" and then learn to use it.
+
+Access modifiers Or Access Control Keywords
+--------------------------------------------
+To set visibility of the TYPE members (fields or methods), we will have to use following access modifiers:
+
+1. public - public entities have no access restrictions.
+            public entities are used anywhere within or outside the program/assemblies.
+2. private - private entities are only visible inside the TYPE in which they are added or created.
+	     private entities of one TYPE cannot be visible to another TYPE.
+3. protected - protected entities are same as private but these entities are also visible in their sub-class.
+
+4. internal - internal entities are only visible inside the assembliy and not visible in other assemblies.
+5. protected internal - These entities are visible in sub-class in other namespace & assembly.
+	
+The compilation unit - means .cs file
+-------------------------------------
+Any TYPE created in compilation unit and which is created as a top-level has either "public" or "internal" visibility and default is "internal".
+
+Top-level meaning a type is not nested. -- A data type inside another datatype is called "Nested".
+
+class A  <--- Top-level type
+{
+  class B {} <--- Nested type
+}
+interface Z  <--- Top-level
+{
+}
+
+Type "A" and "Z" are top-level types and they have "internal" visibility.
+
+Following are invalid:
+ private class A {} 
+ protected class B {}  
+     Top-level can't have private, protected or protected internal visibility.
+
+Nested types & members have following declared accessibilities/visibilities:
+
+Type Name		Default		We can change
+class			private		private, public, internal, protected, protected internal
+interface		public		-- We canot change - members are public forever
+struct			private		private, public and internal
+enum			public		-- We canot change - members are public forever
+delegate		No Member	No member
+
+[NOTE: struct & enum are value types and they don't support inheritance hence we cannot use protected or protected internal modifiers with struct & enum.]
+
+public class Hello
+{
+  int n;  // private
+  public int n1;
+  private string name;
+
+  void p1() {} //private
+  class Test {} // private
+}
+
+The "new" keyword
+------------------
+The "new" keyword instantiate the class/type. To instantiate means to allocate memory for the class's instance members.
+
+Example:
+
+using System;
+
+public class Date
+{
+  public int d,m,y;
+}
+
+public class Test
+{
+  static void Main()
+   {
+       Date a;       // variable "a" is called reference variable
+
+       //Now, create an object
+       a = new Date();  // The new keyword allocate memory for members of Date class - d, m and y. It means
+			// 12 bytes are allocated - three members and each one is 4 bytes long.
+			// That means we've an object or heap or allocated memory whose address will be
+			// saved into "a" reference variable.
+
+       //Create another object
+       Date b = new Date(); // Another 12 bytes object created and its address is assigned to "b" reference variable
+      
+       //set or get data to or from these objects
+
+       a.d = 10;
+       a.m = 1;
+       a.y = 2017;
+
+       b.d = 4;
+       b.m = 2;
+       b.y = 2017;
+
+       Console.WriteLine( a.d + " " + a.m + " " + a.y);
+       Console.WriteLine( b.d + " " + b.m + " " + b.y);
+     }
+}
+
+Example:
+
+using System;
+
+public class Foo
+{
+  public int no;
+}
+
+public class Test
+{
+  static void Main()
+  {
+    Foo a = new Foo();
+    Foo b = a; <--- Address copied
+    a.no = 10;
+    b.no = 20;
+    Console.WriteLine(a.no + "  " + b.no);
+   }
+}
+
+Initial value of the fields or data members
+=========================================== 
+As we know that "local" variables have no initial value or default value. But when we create an object, all simple type fields are initialized with zero based value - int family & float family will be initialized with 0 or 0.0
+					       bool is with false
+                                               char is with '\0' or '\u0000'  (char nul)
+					        and any reference type variable is with null.	
+
+
+
+

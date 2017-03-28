@@ -1,0 +1,72 @@
+The "static" keyword and static member of the class
+====================================================
+
+The "static" keyword is used for different purposes but if it used with a field then this field will be known s "global" or "static" field; that means the static field is once created and alive till the applicatin/program is alive.
+
+Static members of the class must be access via "ClassName.MemberName" syntax if they are visible.
+
+A class can have "instance" members as well as "static" members.
+
+ [Member's copy will be created are called "instance" or "object" member when we creates an object]
+ [Static members are once created that means they have single copy into a memory]
+
+Example:
+
+using System;
+ 
+public class Foo
+{
+    public int no;         //instance or object field
+    public static int no1; //global or static field
+}
+ 
+class Test
+{
+    static void Main()
+    {
+        Console.WriteLine(Foo.no1);  //0
+        Foo a = new Foo();
+        Foo b = new Foo();
+        Foo.no1 = 100;
+        a.no = 10;
+        b.no = 20;
+        Console.WriteLine(Foo.no1 + " " + a.no + " " + b.no);
+    }
+}
+
+Static methods always used to access the static members of the class and also creates a collection of related methods.
+
+Example:
+
+public class Student
+{
+  private int _roll;
+  private string _name;
+  private static string _school;
+
+  public int GetRoll() { return _roll;}
+  public string GetName() { return _name;} 
+  public static string GetSchool() { return _school; }
+  public void SetRoll(int roll) { _roll = roll; } 
+  public void SetName(string name) { _name = name; }
+  public static void SetSchool(string school) { _school = school; }
+}
+
+class Test
+{
+  static void Main()
+   {
+     Student.SetSchool("ABC School"); 
+     Student s = new Student();
+     s.SetRoll(10);
+     s.SetName("Raj");
+     Student t = new Student();
+     t.SetRoll(40);
+     t.SetName("Man");
+     Console.WriteLine( Student.GetSchool() );
+     Console.WriteLine( s.GetRoll() + " " + s.GetName() + " " + t.GetRoll() + " " + t.GetName());
+    }
+}
+
+     
+

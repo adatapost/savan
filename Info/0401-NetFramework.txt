@@ -1,0 +1,464 @@
+Distributed Computing ( Also known as Client Server Computing)
+--------------------------------------------------------------
+
+What is "Client"? 
+
+ 1. It is a program.
+ 2. The client programs/apps uses network to use the services of other programs located on same or different machine.
+
+
+What is "Server"?
+
+  1. It is a program.
+  2. The server program/apps are used by other programs to consume the services of server programs which are located
+	on same or different machine via network.
+
+The Client Server OR Distributing Computing is a way to split the process into two or more apps/programs and each individual program/app communicate to another program/app via network (TCP/IP) protocol. Transmit Control Protocol/Internet Protocol is a STANDARD (RULES) for the communication. Each device in the world has the implementation of TCP/IP (Laptop, Desktop, Mobile, Tablets and many more). TCP/IP is responsible to move your data/instructions from one hardware to another hardware or one program to another program.
+
+                  TCP/IP packet  (To send "Hello" to other program)
+ 
+               ----------------------------
+               | Your IP-Address and Port |
+               |--------------------------|
+               | Your data "Hello"        |
+               |--------------------------|
+               | To (Remote) IP-Address   |
+               |  and PORT                |
+               |--------------------------|
+               | Address of next Packet   |
+               | if exists                |
+               |--------------------------|
+
+
+Example of "server" apps - Database, Mail, Exchange, File Server, Network server, FTP server, Identity server and many
+			   more.
+
+
+Example of "client" apps - Web-browsers and HTML/CSS/JavaScript programming, Desktop apps, Mobile apps.
+
+
+The Components of .Net Framework
+==================================
+The .net framework is constituted with three major components:
+  1. CLI - Common Language Infrastructure
+  2. CTS - Common Types System
+  3. CLR - Common Language Runtime
+
+There are many other components but these three components are the primary and we must have detailed know how of these components in order to understand the .net framework.
+
+CLI
+===
+Common Language Infrastructure is a guideline for the people who wants to use the .net framework. These people might want to create another programming language, libraries, sub sub frameworks, or they are students or learners etc.
+
+There are number of guidelines in .net framework (rule books):
+    1. CLS - Common language specification - this guideline describes nature of programming languages used to use the
+						.net framework.
+						The CLS describes/explains number of rules ranging from variable name
+						to overload a method (means A to Z rules) for the computer languages
+						that are used to use the .net framework.
+
+						C#, VB.NET, F#, IronPython and many other programming languages are
+						created using CLS rules.
+
+						So, programming languages created using CLS are known as CLS-Compliant
+						programming language.
+
+   2. TYPES specification - Rule or guidline to define/create or understand the different datatypes.
+   3. Runtime spefication - Guidline to define/create or understand how the program is launched or run.
+
+	
+  CLS-Compliant languages - Designed/developed using CLS. C#, VB.NET etc
+  Non CLS-Compliant languages - C, C++, Java are not created used CLS.
+
+  Memory usage - How .net applications uses RAM?
+  ---------------------------------------------
+  Each running program or launched program, the .Net Framework Runtime assign 1 MB RAM to it. This 1 MB RAM (memory)
+  is called "STACK FRAME Memory" and it is used for:
+		1. To create local variables (Variables created inside the functions/methods/blocks)
+		2. For method parameters/arguments
+		3. For method return type and
+		4. To call a method.  (Term 'method' means 'function')
+ In case we or our program need more memory because 1 MB is not sufficient to hold large amount of data or we want to
+ store data other than STACK Frame then we must have to request the .net framework's runtime to allocate more memory and
+ this kind of memory is called "Heap Frame Memory". We will use "new keyword" to create/allocate the "Heap memory".
+
+ The size of a Heap can be vary from 1 byte to 2GB or more.
+
+ What is Stack Frame Memory? 
+ It is fixed length/size memory and it will be used by the programs as per Stack data-structure algorithm LIFO - Last In
+ First Out.
+
+ int main()
+  {
+     int a;
+     f1();
+   }
+ f1()
+   {
+     int a;
+     f2();
+    }
+ f2()
+   {
+    int b;
+    }
+
+Stack Memory: Allocated and deallocated as per STACK algo
+
+b-push
+f2-push
+a - push
+f1 - push
+a - push
+main - push
+
+and will be poped in following order:  b, f2, a, f1, a and main
+
+What is a "heap"?
+It is allocated memory region/area whose size might be 1 byte or more (no max limit). The memory manager of .net framework allocate the "Heap" and Garbage Collector of .net framework deallocate or reclaim the "Heap" automatically when that "Heap" is no longer needed.
+
+
+CTS
+===
+Common Types System
+
+TYPES means "Data Types" or "Data Categories" or "Classes".
+
+The CTS is a .net framework data types system for all CSL Compliant languages, libraries and frameworks.
+
+Based upon the memory architecture (Stack & Heap frame), CTS falls into two group:
+
+1. Value Types and
+2. Reference Types
+
+Value Types
+-----------
+
+Value Types are such data types whose size/length is fixed and they do not support the "Inheritance". Value Types variables holds the exact value of the value type that they belongs to. You can't assign other value or null to Value Type.
+
+In CTS, Structure and Enum are example of Value Types. All simple types - char, int, float , double, bool etc are
+	example of Value Types.
+
+
+Value Types may uses stack or heap frame memory.
+
+If Value Types are used as local variables, method parameter or return type then they will uses "STACK Frame".
+
+If Value Types are used with "Reference Types" then they will uses "Heap Frame".
+
+Reference Types
+----------------
+
+Reference Types are such data types whose size or lenght can be grows or shrinks; means variable size data types and they support inheritance. Reference Types variable holds memory address/reference of the "Heap" or null.
+
+In CTS, Class, Interface, Array, Delegate are example of Reference Types.
+
+Reference Types always uses "Heap Frame".
+
+The null keyword means no object at all or no memory or no heap. We often use word "Object" instead of a "Heap".
+
+
+The CTS falls into two group based upon the usage and their application.
+
+   1. Base Class Library Or Fundamental Class Library
+       (BCL or FCL)
+	These TYPES are struct, enum, class, interface, delegate, arrays and they are very essential.
+
+	=> Simple types - char,int,float,bool, double, etc
+        => Strings 
+        => Device Input Output
+        => Network, Thread 
+        => Reflection & Runtime
+        => Debug & Dignostics and many more classes are example of Base class library
+
+	Base class library or Base Library or Core Library is essential and we cannot write a line of code
+	without using these TYPES.
+
+   2. Extended Class Library 
+
+       Application Specific class library is called "Extended Class Library".
+
+        => ADO.NET - Database library
+        => ASP.NET - Web Platform
+        => WinForm - Windows APIs
+        => WPF - Windows Presentation Foundation
+        => WCF - Windows Communication Foundation
+        => Silverlight 
+        => WinPhone
+           and many more APIs.
+
+ What is "Inheritance"?
+    It is a mechanism to re-use the code. The meaning of this "term" is -- reuse the "form" of the datatype.
+
+ The Namespace
+ --------------
+ Namespace is a way to create a group for the related TYPES and keep one group of TYPES distinct from another group of  TYPES.
+
+ The CTS uses "System" as root or main namespace.
+
+ System.Int32 <----- Data type or Type
+  ^
+  |-------- Main Namespace
+  |
+  V
+ System.Web <---- ASP.NET Namespace
+  
+ System.Data <--- ADO.NET namespace
+
+ System.IO <--- Input output classes - namespace
+
+
+ Namning Convention : Namespace name must be in "PascalCase" ; capitalize the first letter of each word.
+
+                    : The Type (struct, enum, delegate, class, interface) name must be in "PascalCase".
+
+  System.Data.SqlClient.SqlConnection <--- class
+   ^       ^    ^
+   |       |    |
+ Root     Sub   Sub Sub
+  NS       NS    NS
+
+ 
+ It is best practice to create the data types using "Named Namespace". If you do not specify the namespace then the C# compiler will create your TYPES in "global" namespace.
+
+ Advantages of using namespace:
+      1. To access or use a separate group of classes easily 
+      2. To avoid the name collition (we can use common name for the TYPES created in different namespaces).
+		e.g   
+			MyApp.Models.Emp
+			MyApp.Reports.Emp
+
+ The System.Object class - The ultimate super class
+ -------------------------------------------------------
+ The "System.Object" is the super class of all CTS and the TYPES will be defined by us. That means any datatype you use is the directly or indirectly a sub-class of System.Object class. (Inheritance concept).
+
+ To create a new class from existing class is called "Inheritance". 
+
+ Normally, there are two ways to create a datatype or class or type.
+
+         1. Create a brand-new from the scratch (Not dependent on existing types)
+         2. Create a new class from "Existing TYPES" - Inheritance
+  
+ In .net framework the System.Object is only type that is created from the scratch (begining).
+
+ class Emp { }  is a sub class of System.Object
+Or
+ class Emp : System.Object { } 
+
+
+ Super class : A class which is used to create a new type is called super or "base" class.
+
+ Sub class   : Classes created using existing class are called "sub" or "derived" classes.
+
+ 
+ Inheritance, in fact, establishes a "is" relationship between classes.
+
+  Sub            Super class
+ Gujarati is a language.  <-- Correct relation
+ Language is a Gujarati.  <--- Wrong relation
+
+ class Language {}
+ class Gujarati : Language {}
+ class Hindi : Language {}
+ class Kathiyawadi : Gujarati {}
+ class Mehsani : Gujarati {}
+ class Bojpuri : Hindi {} 
+ class English : Language {}
+
+ class Hardware {}
+ class InputDevice : Hardware {}
+ class OutputDevice : Hardware {}
+ class Keyboard : InputDevice {}
+ class Xyz : Keyboard {}
+ class Printer : OutputDevice {}
+ class Monitor : OutputDevice {}
+  class Hp : Printer {}
+  class Hp : Monitor {}
+  
+List of simple types (Value Types) of CTS and their equivalent alias (second name) in C#
+--------------------------------------------------------------------------------------------------------
+
+CTS			C# alias		Size in bytes
+--------------------------------------------------------------
+System.Byte		byte			1 byte ( 0 to 255)
+System.SByte		sbyte			1 byte ( - 128 to 127 ) - s stands for "signed; to store negative
+											and positive number.
+System.Int16		short			2 bytes ( - 2^15 to +2^15  - 1)
+System.UInt16		ushort			2 bytes ( 0 to 2^16 - 1) - u stands for unsigned (positive only).
+
+System.Int32		int			4 bytes ( -2^31 to +2^31 - 1 
+System.UInt32		uint			4 bytes ( 0 to 2^32 - 1)
+
+System.Int64		long			8 bytes (-2^63 to 2^63 - 1)
+System.UInt64		ulong			8 bytes ( 0 to 2^64  - 1)
+
+System.Single		float			4 bytes approx   +/- 10^38
+System.Double		double			8 bytes approx   +/- 10^308
+		float data type's actul name is "System.Single"
+		
+System.Decimal		decimal			14 bytes; Always use decimal type instead of "float" or "double" for
+								business application.
+								float and double represent approximate value (not
+								exact scale and precision).
+
+System.Bool		bool			Not Available; It store true or false. "true" and "false" is a 
+						boolean literal.
+
+System.Char		char			2 bytes; It represent the universal text format character set Or 						"unicode" or "national" charset. You can represent English and
+						non-English text (Gujarati/Hindi/etc).
+
+System.DateTime		System.DateTime (No alias) 8 bytes; to store date & time.
+
+
+Note: All simple types (above mentioned) are created using "struct" (value types).
+
+Now, we've two most commonly used reference types,
+
+System.String		string			To repsent the unicode string.
+System.Object		object			It is the ultimate super class of all CTS and custom types.
+
+	Note: System.String can be written as "string" in small letter because "string" is an alias.
+		and similarly "object" is an alias of "System.Object".
+
+
+        The C# compiler replace actual type name (CTS) of alias.
+
+	In C# everthing we write inside the " " double quote will be an object of "System.String or string" class.
+
+	e.g.  "Savan"
+	      "20"
+
+CLR - Common Language Runtime
+===
+
+It is the rich runtime environment that handle number of runtime services on behalf of the developers and operating systems including:
+
+  1. Loading of Types (loading of applications)
+  2. Code verification
+  3. Code compilation 
+  4. Memory allocation
+  5. Memory deallocation
+  6. Type safety verification
+  7. Threading/concurrency and parallel process
+  8. Exception (error) handling
+  9. Running/hosting unmanaged code
+ 10. Version checking and many more.
+
+ What is "common language"?
+
+   It is an assembly like (low level) programming language of "Compilers". It is a language of C#, VB.NET or any CLS-	Compliant language. This "common language" name is "MSIL-Microsoft Intermediate Language".
+
+
+	It means C# is our (developer) language.
+         and MSIL is a language for "C#".
+             MSIL is a language for "VB.NET" and other CLS compliant languages.
+
+
+  We will write our code in C# and the C# compiler will tranlate C# code into MSIL code.
+
+  C# PRograms => C# Compiler => Generate a file that contains MSIL code
+  Program.cs  => Compile     => Program.Exe or Program.Dll 
+
+	The MSIL Code will be saved into .exe (self executable) or .DLL (dynamic link library) extension file and
+	.exe or .dll file is known as "Assembly file".
+
+	Self executable assembly has a main() - entry point function so it will be launched via "commaond line" or
+	double clicking on it.
+
+	DLL assembly cannot be started that way; instead it is linked or referenced to other EXE or DLL assembly;
+        in order to re-use the compiled code. The EXE's code can not be re-used or it cannot be linked or referenced
+	to other assemblies.
+
+  All CTS are exists in DLL assembly (MSIL instructions).
+  All compiled apps created using C# or VB or CLS compliant language will be MSIL.
+
+
+  The CLR only process and execute the the MSIL instructions whereas the operaing system only process and execute the   "Native or binary" instructions. It means "MSIL" cannot be executed or understood by the operating system.
+
+ CLR services or CLR Service Stack
+ ---------------------------------
+ The CLR services are used to provide number of runtime service to the "assembly - .Dll or .EXE" in order to execute the  code.
+
+ C# Program
+    ||
+    \/
+ C# Compiler
+    ||
+    \/
+ Assembly (.EXE or .DLL)
+ (MSIL code)
+    ||
+    \/
+ With the help of CLR Service STACK
+ MSIL Code is translated into
+ "Native or OS instructions".
+   ||
+   \/
+ OS will execute the "Native" code.
+
+First of all, assemblies are stored into the disk and we need to load them into RAM - The "Code Loader" service load/fetch MSIL code from the disk or network.
+
+After than, the "Code Verifier" service verify the loaded code instructions; to check whether these instructions are altered or manipulated or malfunction or not. If so then it stops the code execution.
+
+After code is verified, the Just-In-Time compiler translate MSIL code into Native code. The Just-In-Time is a highly optimized compiler that translate those MSIL instructions which are really needed or used.
+
+     e.g Out of 50 instructions, only two are used then JIT will translate these two instructions.
+
+ [There is another tool called "ngen.exe" which translate entire MSIL assemblies into "Native" at once]
+
+Type Safety Verification service examine the TYPES of Data and stop the program if data types are not used properly.
+	In .NET App, data types are examine at compilation and runtime.
+
+Memory manager service creates "STACK Frame" and "Heap Frame" as needed.
+
+Garbage Collector service - GC (Garbage Collector) automatically starts with memory manager service and it keep track on
+			    "Heap or objects". It reclaim those "Heap" which are no longer used by the application.
+				Note that the GC wont reclaim the "STACK Frame".
+
+Exception handling service - It reports or notify the developers about something is not working or something is 				happning; improper use of action or behavior etc.
+Thread service - To run two or more functions concurrenly; it gives few nano seconds to one function to run code and few
+		 nano seconds to other functions. It means the control will be switched between two or more functions.
+
+Process service - A process means a "program".
+                  A thread means a "function".
+
+                  First of all CPU (processors), starts a "process" and then there will be one or more threads per
+		  "process".
+
+
+                    \/ \/  
+                     \ / <--- Threads (here 6 threads)
+                      |
+                      | <-- Process (1 process)
+                     CPU
+Version and co-instance execution service - This service check the version of "process/program" and used assemblies
+						of same or different versions.
+Hosting Non CLS Compliant code - A code that is created using CLS compliant language is called "Managed code".
+                                 A code that is created using Non-CLS compliant language is called "Unmanaged code".
+
+			The CLR service Stack cannot process the "Unmanaged code" but it can host (install) the
+			unmanaged code and it can be done by the "Com-InterOp" service.
+
+			The COM-InterOp (Operability) Service is responsible to handle the Unmanaged code; especailly
+			written in C/C++ language.
+
+	
+What is "assembly" file (.net assembly)?
+   An "assmebly" is a very special file (has .dll or .exe extension) that store MSIL instructions and other meta data of    the assembly.
+
+    An assembly file has following content:
+	1. Assembly Version
+        2. MSIL code or Module
+        3. Reference or links of used libraries and
+        4. Resources; other files like icons, images, text , config files etc.
+
+   There are mainly two category/types of assemblies:
+     1. Public assembly    --- This kind of aasmblies are stored into a special folder into your machines 
+				(c:\windows\assemblies\) and they are shared by other applications/software in	
+				your machine/computer.
+
+    2. Private assembly    --- It is a private assembly; means it cannot be used into other program/project until
+				you copied it into that project. By default, we will create private kind of
+				assemblies - while creating projects of varities of types.
+
+

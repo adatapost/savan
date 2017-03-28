@@ -1,0 +1,113 @@
+The Constructor method/function
+===============================
+
+There are two types of constructors:
+  1. Instance constructors - These are very special methods called automatically when we create an object. 
+  2. Static constructor - It is the single constructor in a class which will be called once automatically
+			  when we use that class very first time.
+Syntax:
+
+  1. Instance constructor must uses the "ClassName"
+      and it has parameters.
+  2. Static constructor must uses the "ClassName" with static modifier.
+
+Example:
+
+using System;
+
+public class Foo
+{
+
+    //Instance constructors
+    public Foo()
+    {
+        Console.WriteLine("Instance Constructor-No argument");
+    }
+    public Foo(int n)
+    {
+        Console.WriteLine("Instance constructor-Parameterized");
+    }
+
+    //Static constructor
+   static Foo()
+    {
+        Console.WriteLine("Static constructor - Foo");
+    }
+}
+
+class Test
+{
+    static Test()
+    {
+        Console.WriteLine("Static constructor of Test class");
+    }
+    static void Main()
+    {
+        Console.WriteLine("Hello!");
+
+        Foo a = new Foo();
+        Foo b = new Foo(11);
+        Foo c = new Foo();
+        new Foo();
+    }
+}
+
+Example:
+
+public class Student
+{
+   int _roll;
+   string _name;
+   static string _school;
+
+   //static constructor
+   static Student() 
+    {
+      _school = "Mehsana School";
+    }
+   //instance constructor
+   public Student()
+   {
+     _roll = 1;
+     _name = "";
+    }
+   public Student(int roll, string name)
+    {
+      _roll = roll;
+      _name = name;
+     }
+   public Student(string name, int roll)
+    {
+      _roll = roll;
+      _name = name;
+     }
+   public Student(Student obj)
+    {
+       _roll = obj._roll;
+       _name = obj._name;
+     }
+   //create getter/setters as per previous example
+}
+
+class Test
+{
+  static void Main()
+   {
+    Console.WriteLine( Student.GetSchool() );
+    Student a =new Student(); // will call the parameter less constructor
+    Student b = new Student(10,"Raj"); //2nd constructor
+    Student c = new Student("Man",20); //3rd constructor
+    Student d = new Student(b); //4th constructor
+
+     
+    Console.WriteLine(a.GetRoll() + " " + a.GetName());
+    Console.WriteLine(b.GetRoll() + " " + b.GetName());
+    Console.WriteLine(c.GetRoll() + " " + c.GetName());
+    Console.WriteLine(d.GetRoll() + " " + d.GetName());
+    }
+}
+
+  
+
+
+

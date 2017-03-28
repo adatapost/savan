@@ -1,0 +1,745 @@
+C# Language Basics
+==================
+
+
+1. Console Application Template of Visual Studio (Project)
+
+   In order to learn the C# Language very beginning, we must have to use the "Console Application" project template of
+	visual studio.
+
+	The console (means terminal or command window) app always prints data on terminal and also receive data from the
+ 	terminal and we will use System.Console class methods to read and write data.
+
+		1. System.Console.Write(data) - Write data at cursor into the terminal
+		2. System.Console.WriteLine(data) - Write data at cursor and adds new line into the terminal.
+		3. System.Console.ReadLine() - Input a string from the terminal.
+  
+   The Console project will creates a executable (.exe) assembly and it must have one and only one entry point
+	method - Main().
+
+	You can choose one of the four syntax to define the main method.
+
+	1. static void Main() { }
+        2. static void Main(string []args)  { }
+        3. static int Main() { return 0; }
+        4. static int Main(string []args) { return 0; }
+
+Syntax:
+
+public class YourClassName
+{
+  static void Main()  <------ "M" must be upper letter
+   {
+     //statements.....
+    }
+}
+
+     To run the application (via Visual Studio):
+
+	1. Debug Menu + Start With Debugging ( Or Press F5 key) -- This way your program will be launched/run with
+			the support debug APIs and Visual Studio. This method of running an application is also
+			known as "Debugging".
+			Debugging means an application is run by the OS or Platform to assists the developers. 
+			The developers easily understand the program execution flow, memory usage, error/exception
+			information, threading and process and many more things.
+
+         		So, always use "Start With Debugging"
+
+        2. Debug Menu + Start Without Debugging ( Or Press Ctrl + F5 key) -- This way the visual studio launch your
+			application by removing "Debug capabilities" and runs it as independent. This way your app
+			behaves like a "released" version (fully tested and ready to deliver).
+
+Naming Conventions to name the project, files , class, interface, delegate, struct, methods and fields
+======================
+
+1. Always use "PascalCase" ; Capitalize the first letter of each word to name the,
+	1. Project or Application.  eg. StudentApp or StudentSite or BasinessModule
+	2. Name of the namespace, class, interface, delegate, struct and enum
+	3. Name of the Files and Folders.
+	4. Name of the public methods, properties, events, constants
+2. Use "lowercase" or _ underscore suffix name for local variables and private fields.
+		e.g.  	int amount;
+			double _balance;
+	You can also use "camelCase" to name the private fields, variables and parameters of method.
+
+		camelCase means - The first word must be in lower case and then capitalize the first letter of each 		word. e.g  int myNumber, yourNumber, myEvenNumber;
+				addTest, runProgramConcurrently etc
+
+Example:
+
+1. Open Visual Studio
+2. File + New + Project + Visual C# language + Console Application Project template + Set proper name e.g FirstApp
+	or MyApp etc  + OK 
+3. There is a code file in the project (View Menu + Solution Explorer) called "Program.cs". Open it + Remove the code
+   from Program.cs and write following code:
+
+public class Hello
+{
+  static void Main()
+   {
+     System.Console.WriteLine("Hello! C# Application.");
+     System.Console.WriteLine("\n\nThis is my first C# console application.");
+     System.Console.Write("First Line");
+     System.Console.Write("Second Line");
+    }
+}
+
+What is "Project Template"?
+==========================
+A "project template" is a setting files which determines:
+
+  1. How to compile the files and where to store the assemblies (.exe or .dll)
+  2. How many .net CTS assemblies required?
+  3. Which kind of "Build - compile & assemblies generation" technique is used - There are two builds:
+        1. Debug Build (Which is default) - When you press F5 (Start debugging) debug build will be used.
+		Debug build saves assemblies at bin/Debug folder.
+	2. Release build - It is final build and assemlies will be saved at bin/Release folder.
+
+	In VS, Build Menu + Build Manager to change the Build type.
+   
+ To change the project template, we can update necessary details by opening "Project Properties" window :
+	-> Double click on "Properties" at Solution Explorer under the project name
+
+Local variables
+================
+A "variable" created inside the method ( Method means function and we will always call it method).
+
+A local variable is not initialized automatically so we must have to set/assign value before the use.
+
+Example:
+
+public class Test
+{
+  static void Main()
+   {
+     int n;
+     System.Console.WriteLine( n ); <--- error 'n' is not initialized
+    }
+}
+
+So we must have to assign the value to "n" before its use.
+
+public class Test
+{
+  static void Main()
+  {
+    int n = 10;
+    string name = "Raj";
+    int age;
+
+    age = 20;
+
+    System.Console.WriteLine(n);
+    System.Console.WriteLine(name);
+    System.Console.WriteLine(age);
+
+    System.Console.WriteLine("Roll : " + n);
+    System.Console.WriteLine("Name : "+ name);
+    System.Console.WriteLine("Age  : " + age);
+  }
+}
+
+The literals of simple types and string
+---------------------------------------
+
+Literal means constant values. The C# compiler automatically choose data type of the value based upon the literal.
+
+1. Integer literal - Any number without decimal is consider as int.
+
+	e.g 10
+            -100
+           +5
+
+   The integer literal can be expressed using Octal or Hexa decimal number.
+
+
+public class Test
+{
+    static void Main()
+    {
+        int no = 255;
+        System.Console.WriteLine(no);
+        no = 0xff;
+        System.Console.WriteLine(no);
+        no = 012;
+        System.Console.WriteLine(no);
+    }
+}
+
+   Initialization? - To assign literal or value at the time of declaration of variable.
+	e.g
+		int no = 10;
+		byte a = 2;
+		short c = 30;
+		int no1 = no + 20;
+
+   Assignment? - To assign value or literal after the variable is created
+
+	e.g  int no;
+             no = 10;
+
+  The "int" literal automatically converted to byte, sbyte, short, ushort, int and uint but it throws
+	an exception (error) when the int literal exceed the size of target type.
+
+
+ Example: Determine the minimum and maximum range of simple types.
+
+public class Test
+{
+  static void Main()
+   {
+     System.Console.WriteLine(byte.MinValue +  "     "  + byte.MaxValue);
+     System.Console.WriteLine(short.MinValue +  "     "  + short.MaxValue);
+     System.Console.WriteLine(int.MinValue +  "     "  + int.MaxValue);
+     System.Console.WriteLine(double.MinValue +  "     "  + double.MaxValue);
+   }
+}
+
+Use simpleTypeName.MinValue or MaxValue field to get the range.
+
+Example: (code in Main)
+
+byte a = 100; //OK
+byte b = 256; //error because it exceed the range
+
+short c = 40000; // error because range of short is  -32768 to 32767
+
+
+2. Long literal is denoted using "L" or "l" suffix.
+
+	10L  
+	-9999L
+	0xFFFFFFL
+Ex:
+
+        long no = 10000000L * 1000000L;
+        System.Console.WriteLine(no);
+
+Overflow and underflow checking of int family types - byte, sbyte, short, ushort, int, uint, long and ulong
+-----------------------------------------------------------------------------------------------------------
+
+Ex:
+
+byte a = 255; //OK
+a++;          // will produce large value (more than range) and it wont fit and it causes overflow
+System.Console.WriteLine(a); // Improper value
+
+
+You can use "checked" block to determines the overflow and program throws an error:
+
+checked
+{
+  byte a = 255;
+  a++;
+  System.Console.WriteLine(a);
+}
+
+You can use "unchecked" block and which is default turn on in our project so no need to add it.
+
+3. Float literal uses "F" or "f" suffix
+4. Double literal - no need to use "D" or "d" - any value with decimal point is consider as double
+
+Ex:
+
+float no = 10.10;  <--- error because 10.10 is of double type and can't save into "float"
+
+So, 
+
+float no = .10.10f;  will works perfectly.
+
+5. Decimal literal uses "M" or "m" suffix.
+
+
+float a = 10.10f;
+double b = 10.10; 
+decimal c = 10.10m;
+
+System.Console.WriteLine(a + "  " + b + " " + c);
+
+6. boolean literal uses keywords - true or false
+7. char literal is expressed via 
+		ANSI (English charset) : 'a', '?', '$' - single char enclosed with single quote.
+		UNICODE (Any charset)  : '\u0000' \u+four+hex+char
+					e.g '\u0912'
+
+    [Open CharMap.Exe tool to exmine the unicode chars]
+
+Example: We will display non English chars on "Output" windows of Visual Studio instead of "Console".
+
+  char ch = '\u0AB5';
+  System.Diagnostics.Debug.WriteLine(ch + " " + '\u0912');
+
+The Debug class is used to write data, infomation for debugging purposes.
+
+Importing the namespace
+========================
+To import a namespace means to instruct the C# compiler to use the specified namespace of the TYPES used inside the code which are written without adding fully qualified name.
+
+For example, if we don't want to write "System" namespace name in each statement then we can import it using following syntax:
+
+using Namespace;
+using Namespace.SubNamespace;    
+
+Note that the using Namespace must appear at the top of the code file.
+
+
+Example:
+
+using System;
+
+public class Test
+{
+  static void Main()
+   {
+      Console.WriteLine("No need to use 'System' namespace because it is imported in current program");
+      System.Console.WriteLine("However you can use it.");
+     }
+}
+
+Example:
+
+using System;
+using System.Diagnostics;
+
+public class Test
+{
+  static void Main()
+   {
+     Debug.WriteLine("Program started...");
+     Console.WriteLine("This is test program.");
+     Debug.WriteLine("Ends...");
+    }
+} 
+
+
+Create an alias (UpNaam) of Type
+=================================
+
+Syntax:
+
+ using AliasName = YourTypeName;
+
+Example:
+
+using System;
+using Cn = System.Console;
+
+public class Test
+{
+  static void Main()
+   {
+     Cn.WriteLine("'Cn' is an alias or second name of 'Console' class");
+     Console.WriteLine("You can also use original name too!");
+    }
+}
+
+String literal
+==============
+In .Net, any content enclosed within the double quotes is a string. That means C# compiler automatically choose "System.String" class. The System.String class has an "alias" called "string" - so we can use "String" or "string" interchangbly.
+
+Example:
+
+string name = "Savan Panchal";
+String address = "12 - Xyz Society, Mehsana";
+
+Console.WriteLine( name );
+Console.WriteLine( address );
+
+Example: We can use escape sequence characters 
+\n (newline)
+\t (tab)
+\b (backspace key)
+\a (beep or bell)
+\r (enter key)
+and many more 
+
+string str = "This is first line\nand this is second";
+Console.WriteLine( str );
+Console.WriteLine("\nRoll\tName\t\tAge");
+Console.WriteLine("\n1\tRaj\8");
+Console.WriteLine("\n2\tMahesh\10");
+
+Example: \ is also used to escape the " or ' (double or single quote
+
+string str = "The \"Red\" sun";
+string str1 = "The \'Red\' sun";
+
+Console.WriteLine( str );
+Console.WriteLine( str1 );
+
+Example: \ (backslash) is used to escape the other backslash chars .eg \t \n \a (any char begins with \)
+
+string path1 = "c:\new folder\test";
+Console.WriteLine( path1 );
+//Now we escape the backslash chars by adding an extra \
+string path2 = "c:\\new folder\\test";
+Console.WriteLine(path2);
+
+Multiline string using @ string verbatim operator - @ is called verbatim
+==========================================================================
+The @ operator automatically escape the backslash chars and allows whitespaces.
+
+Syntax:  @"your string...";
+
+Example:
+string str = @"c:\new folder\test";
+string str1 = @"
+Dear Sir,
+
+This is "Raj" from Mehsana.  <-------------  Change to ""Raj""
+
+Thank you,
+
+Raj";
+
+Console.WriteLine( str );
+Console.WriteLine( str1 );
+
+NOTE: Add ""Raj"" to escape " in @ verbatim string. You can't use \ to escape double quotes.
+
+Example:
+
+ string report = @"
+        ABC Pvt Ltd
+         Mehsana
+================================
+| Sr.  | Name                  |
+|------+-----------------------|
+| 1    | Manoj                 |
+|------------------------------|            
+";
+        Console.WriteLine(report);
+
+String methods
+======================
+
+1. string.Format("format", arguments...)
+
+   The "format" section uses indexed parameters using {number} syntax. The value 0 at {0} is consider as first parameter
+   {1} will be second and so on.
+
+Example:
+
+int roll = 10;
+string name = "Raj";
+string parent = "Mohan";
+
+string str = string.Format("{0} {1} {2}", roll, name, parent);
+Console.WriteLine(str);
+str = string.Format("Roll : {0}\nName : {1}\nParent : {2}", roll, name, parent);
+Console.WriteLine(str);
+str = string.Format("\"{2}\" is a father of {1} whose roll is {0}", roll, name, parent);
+Console.WriteLine(str);
+str = string.Format("{0} {1} {2} {0} is roll, {1} is name of student and {2} is a parent name", roll, name, parent);
+Console.WriteLine(str);
+
+Example:
+
+int no1 = 10, 
+    no2 = 20;
+
+string str = string.Format("Sum of {0} and {1} is {2}",no1,no2,no1+no2);
+Console.WriteLine(str);
+
+//Same format is also supported by the Console.Write and WriteLine methods
+
+Console.WriteLine("{0} + {1} = {2}",no1,no2,no1+no2);
+Console.WriteLine("{0} - {1} = {2}",no1,no2,no1-no2);
+
+Console.WriteLine(@"
+{0} + {1} = {2}
+{0} - {1} = {3}
+{0} * {1} = {4}
+{0} / {1} = {5}",no1,no2,no1+no2, no1-no2, no1*no2, no1/no2);
+
+Example:
+
+int age = 10;
+string name = "Raj";
+string parent = "Mohan";
+
+string sms = string.Format(@"
+Dear parent {0},
+
+Your son/daughter ""{1}"" whose age is {2} is quite
+irregular. Please meet class teacher {3} as 
+possible.
+
+Thanks you",parent,name,age,"Miss Meena");
+
+Console.WriteLine( sms );
+
+String to number - parse the string and produce numeric value
+==============================================================================
+
+Each simple type has methods to parse the string and produce appropriate result. 
+
+   "To transform strings into number, date time, bool is called parse".
+
+Methods:
+   SimpleTypeName.Parse( string )
+   SimpleTypeName.TryParse( string, out SimpleTypeVarName)
+
+1. Parse() - To parse the string and throws an error if string contains improper data.
+
+Example:
+        string str = "1000";
+
+        int no = int.Parse(str);
+        no = no + 10;
+        Console.WriteLine(no);
+
+        str = "199.222";
+        decimal amount = decimal.Parse(str);
+        Console.WriteLine(amount);
+
+Example: 
+         string str = "100abc"; //or str = "abc";
+         int no = int.Parse(str); <--- There will be an error which says incorrect data format
+
+2. TryParse(str, out varName) -- This method returns true or false (boolean value). 
+                                 This method receive string and reference of the variable using "out" keyword.
+				 This method automatically handle the exception/error and returns false if
+				 parse failed, returns true otherwise.
+
+Example:
+        string str = "10.00";
+        int no;
+        decimal amount;
+
+        if (int.TryParse(str, out no))
+            Console.WriteLine("Parse success " + no);
+        else
+            Console.WriteLine("Parse failed : " + no);
+
+        if (decimal.TryParse(str, out amount))
+            Console.WriteLine("Parse succeed: " + amount);
+        else
+            Console.WriteLine("Parse failed " + amount);
+
+The "out" is a keyword which is known as reference operator. (Similar to & in C/C++)
+
+The Parse() method automatically called by the methods of System.Convert class so you can use these methods too.
+
+The System.Convert class methods
+--------------------------------
+Example:
+
+        string str = "100";
+        int no = Convert.ToInt32(str);
+        decimal amount = Convert.ToDecimal(str);;
+        byte bt = Convert.ToByte(str);
+        Console.WriteLine("{0}   {1}   {2}", no, amount, bt);
+
+Example: You can cast/convert one simple type value to other simple type value using Convert.ToXXXXXX methods.
+
+        int no = 100;
+        decimal amount = Convert.ToDecimal(no);
+        byte bt = Convert.ToByte(no);
+        Console.WriteLine("{0}   {1}   {2}", no, amount, bt);
+   
+Format the string - Simple type data to string conversion using ToString() method
+=================================================================================
+Each type in the .net CTS and custom API, the Object's ToString() method is used to represent the data into string format.
+
+Example:
+
+  int no = 100;
+  string str = no; <--- Error; cannot convert "no" (int) to string implicitly (automatically)
+
+So, we must have to request the ToString() method:
+
+   int no = 100;
+   string str = no.ToString();   // string str = Convert.ToString(no);
+
+   Console.WriteLine( str ); // 100 
+
+Example: Integer value to string - hex, octal and binary format
+
+        int no = 255;
+        string str = Convert.ToString(no);
+        Console.WriteLine(str);
+        Console.WriteLine("Binary - {0}",Convert.ToString(no, 2)); //binary
+        Console.WriteLine("0x{0}",Convert.ToString(no, 16)); //Hex
+        Console.WriteLine("0{0}",Convert.ToString(no,8)); //Octal
+
+Example: N - Number, C - Currency number format characters. We can also use # or 0 to custom format the numeric value.
+
+        int no = 12323231;
+        decimal amount = 199299923232.2323224m;
+
+        Console.WriteLine(no.ToString("N")); // N - Number format with 2 places decimal
+        Console.WriteLine(no.ToString("N4"));
+        Console.WriteLine(no.ToString("C")); //C -Currency
+        Console.WriteLine(amount.ToString("C3")); //C -Currency
+        Console.WriteLine(amount.ToString("C0"));  
+
+        Console.WriteLine(amount.ToString("###,###,###,###,###,###.##")); // Custom format
+        Console.WriteLine(amount.ToString("000,000,000,000,000,000.00")); // Custom format
+
+        for(int index=1;index<=10000;index=index+100)
+        {
+            Console.WriteLine(index.ToString("0000000"));
+        }
+
+The System.DateTime structure/datatype
+--------------------------------------
+
+To represent Date & Time and its method operate the date & time data.
+
+1. DateTime.Now - Current local system date & time as per local time zone Asia/Kolkatta
+2. DateTime.UtcNow - Universal Time Coordinate Date & Time ( GMT - Greenwich Meridean Time)
+
+Example:
+
+        Console.WriteLine(DateTime.Now);
+        Console.WriteLine(DateTime.UtcNow);
+
+        DateTime now = DateTime.Now;
+
+        Console.WriteLine(now);
+
+3. Parse() and TryParse() - String to datetime
+
+Example:
+
+  string dtStr = "12/31/2003 10:20:30 PM";  // Format must be mm/dd/yyyy hh:mm:ss Am/PM
+
+  DateTime dt = DateTime.Parse( dtStr );
+
+  Console.WriteLine( dt );
+
+  dtStr = "10/31/2017";
+  dt = DateTime.Parse( dtStr );
+
+Note: Parse() will displays errors if date string is incorrect
+
+Example:
+
+  string dtStr = "31/12/2017";
+  DateTime dt;
+  
+  if( DateTime.TryParse( dtStr , out dt ) )
+   {
+      Console.WriteLine("Valid Date : " + dt);
+    }
+ else
+   {
+     Console.WriteLine("Invalid Date.");
+    }
+
+4. Get or Set Date & time parts - Day, Month, Year, Hours, Minutes, Seconds, Milliseconds
+
+Example:
+
+        DateTime dt = DateTime.Now;
+
+        Console.WriteLine(dt.Day); //Today day no
+        Console.WriteLine(dt.Month);
+        Console.WriteLine(dt.Date); // Date only
+        Console.WriteLine(dt.TimeOfDay);
+        Console.WriteLine(dt.Millisecond);
+        Console.WriteLine(dt.Hour);
+
+        dt = DateTime.Parse("12/31/2016");
+        Console.WriteLine(dt.Millisecond);
+
+5. AddXXXXXXX(value) -- AddDays, AddMonths etc - To add or subtract date time parts
+
+Example:
+
+        DateTime dt = DateTime.Now;
+
+        Console.WriteLine(dt);
+
+        dt = dt.AddDays(100); //Add 10 days to current date
+        Console.WriteLine(dt);
+
+        dt = dt.AddDays(-20); //Subtract 20 days
+        Console.WriteLine(dt);
+
+        dt = DateTime.Now;
+        //Add 4 years 3 months 2 days and 5 hour
+        dt = dt.AddYears(4).AddMonths(3).AddDays(2).AddHours(5);
+        Console.WriteLine(dt);
+
+6. DateTime diffence in days, minutes, seconds and millis
+
+Example:  TimeSpan datatype hold difference between two objects of DateTime
+
+        DateTime dt1 = DateTime.Now;
+        DateTime dt2 = DateTime.Parse("12/5/1971");
+
+        //Date & Time diff in days,minuts,seconds, millis
+        TimeSpan diff = dt1 - dt2;
+        Console.WriteLine("Int           Double ");
+        Console.WriteLine(diff.Days +  "      " + diff.TotalDays);
+        Console.WriteLine(diff.Hours + "      " + diff.TotalHours);
+        Console.WriteLine(diff.Milliseconds + "      " + diff.TotalMilliseconds);
+
+7. ToString("format") - To convert DateTime to string OR Format the DateTime 
+
+Example:
+
+DateTime dt = DateTime.Now;
+
+Console.WriteLine( dt.ToString("d") ); // Date 
+Console.WriteLine( dt.ToString("t") ); // Time
+
+Console.WriteLine( dt.ToString("dd") ); // day number e.g 25
+Console.WriteLine( dt.ToString("ddd") ); // day name e.g. Wed
+Console.WriteLine( dt.ToString("dddd") ); // day name e.g Wednesday
+
+Console.WriteLine( dt.ToString("M") ); // Month & Year
+Console.WriteLine( dt.ToString("MM") ); // Month number e.g 01
+Console.WriteLine( dt.ToString("MMM") ); // Month name e.g Jan
+Console.WriteLine( dt.ToString("MMMM") ); // Month name e.g January
+
+Console.WriteLine( dt.ToString("dd-MM-yyyy") ); //  e.g 25-01-2017
+Console.WriteLine( dt.ToString("dd-MM-yyyy hh:mm:ss t") ); //  e.g 25-01-2017 08:40:30 AM
+
+
+The "var" keyword
+==================
+The 'var' keyword is used to create local variable whose TYPE is determined by the assigned value.
+
+ Syntax:   var varName = value;
+
+You can't use "var" keyword to create fields or parameters of method or return type of method. It is only for to create "local" variables.
+
+Example:
+
+var no = 10; // int
+var no1 = 10L; //Long
+var no2 = 10.0f; //Float
+var no3 = 10.10; //double
+var no4 = 10.10m; //decimal
+var bt = Convert.ToByte(10); // byte
+var name = "Raj"; //string
+var dt = DateTime.Now; //DateTime
+
+The "dynamic" keyword
+=====================
+The C# language support dynamic programming via "dynamic" keyword. You can declare such a variable whose datatype is examined during program execution. That means you can assign any datatype value to the variable because the data type of variable will be changed when you change the data or value.
+
+ As oppose to "var" keyword, a "var" keyword is used to create a variable by assining a value at the time of writing a   code that means at the time of compilation. The "var" will be examined at compile time.
+
+ Whereas "dynamic" will not be examined by the compiler but it will be examined by a special service of CLS called "Dynamic Language Runtime - DLR".
+
+The dynamic keyword is used for,
+  1. Local variables
+  2. Fields (data members)
+  3. Return type and method arguments
+
+Example:
+
+        dynamic no;
+       
+        no = 10;
+        Console.WriteLine(no);
+        no = 10.10;
+        Console.WriteLine(no /* + " " + no.Length*/);
+        no = "Hello";
+        Console.WriteLine(no +  "  " + no.Length);
+        no = DateTime.Now;
+        Console.WriteLine(no + " " + no.ToString("dd-MMM-yyyy"));

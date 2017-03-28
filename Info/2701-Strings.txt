@@ -1,0 +1,70 @@
+Strings in .net 
+===============
+
+There are two different datatypes to represent strings:
+
+  1. System.String or string -- It is an immutable object. Immutable means readonly. You cannot change the content
+				of immutable object once it is saved.
+
+  2. System.Text.StringBuilder -- It is a mutable object. Mutable means writable & redable. You can change the
+				  content of mutable object. That means a same object can be resized.
+
+Example: string or String class
+
+ // Each time you operate the string class object, will create a new object
+
+ string name = "Raj";   // an object is created that store "Raj"
+
+ name = name + " ";     // a new object will be created that store "Raj ";
+ 
+ name = name + "Shah";  // a new object will be created that store "Raj Shah"
+
+ name = name.ToUpperCase(); // a new object will be created that store "RAJ SHAH"
+
+ 
+So, in this case, CLR create four string objects but at last earlier three objects will be garbage collected and last object is referenced by the "name" variable.
+
+It is important to note that never use "string" class to manipulate strings (insert,delete,update, concat etc). 
+
+Example: StringBuilder class
+
+A single object allow us to insert, delete, update , concat strings.
+
+System.Text.StringBuilder sb = new System.Text.StringBuilder();   //Single object
+
+sb.Append("Hello");
+sb.Append(10);
+sb.Insert(2,"Hiiii");
+
+Console.WriteLine( sb.ToString() ); 
+
+[Note: Append means add something at the end of list or string ]
+
+Example: We will use "StopWatch" class to examine the time taken by some statements in our program.
+
+For string class :
+
+        string str = "";
+        System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
+        watch.Start();
+        for(var i = 1; i<=100000;i++)
+        {
+            str = str + i;
+        }
+        watch.Stop();
+        Console.WriteLine(watch.ElapsedMilliseconds + " ms (1000ms = 1 second)");
+         
+
+For StringBuilder class :
+        StringBuilder str = new StringBuilder();
+        System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
+        watch.Start();
+        for(var i = 1; i<=100000;i++)
+        {
+            str = str.Append(i);
+        }
+        watch.Stop();
+        Console.WriteLine(watch.ElapsedMilliseconds + " ms (1000ms = 1 second)");
+         
+
+In CTS, all simple types - structs and enums are immutable types.

@@ -1,0 +1,728 @@
+Object Composition - To use classes to define new classes
+=========================================================
+
+In fact our data and data structure are always complex and we need to rethink the class design everytime we see complexity.
+
+For example,
+
+We've a simple class called "Point"
+
+public class Point
+{
+  private int _x,_y;
+  public int X { get { return _x; } set { _x=value; } }
+  public int Y { get { return _y; } set { _y=value; } }
+}
+
+
+We can use "Properrties" and following syntax to initialize the object.
+
+Syntax: Object initializer
+
+ClassName varName = new ClassName
+{
+  Property1 = value1,
+  Property2 = value2,
+  ....
+};
+
+So, out code in Main() method:
+
+public class TestPoint
+{
+  static void testOne() 
+   {
+      //Creates an object
+      Point p = new Point();  
+      //Assign properties
+      p.X = 90;
+      p.Y = 40;
+      Console.WriteLine(p.X + " " + p.Y);
+   
+       //Creates an object and intialize the properties
+      Point q = new Point 
+       {
+         X = 900,
+         Y =1000
+        };
+      Console.WriteLine(q.X + " " + q.Y);        
+      Point r = new Point { X = 90 };
+      Console.WriteLine(r.X + " " + r.Y);        
+    }
+
+  static void Main()
+   {
+      testOne();
+    }
+}
+
+Auto-implemented properties
+============================
+The C# compiler will automatically and implicitly create the fields for the properties if we create properties in our classes using following syntax:
+
+
+access  TypeName  PropertyName  { get; set; }
+access  TypeName  PropertyName  { private get; set; }
+access  TypeName  PropertyName  { get; private set; }
+access  TypeName  PropertyName  { private get; private set; }
+
+Example:
+
+public class Point
+{
+  public int X { get; set; }
+  public int Y { get; set; }
+}
+class Test
+{
+ static void Main()
+  {
+     Point p = new Point { X = 10, Y = 20 };
+     Console.WriteLine( p.X + " " + p.Y );
+   }
+}
+
+Auto-implemented properties allow us to design the data structure speedly but if we need some sort of validation then we must have to switch to old syntax of property.
+
+Example:
+
+using System;
+
+public class Student
+{
+   public int Roll {get;set;}
+   public int Maths {get;set;}
+   public int English {get;set;}
+   public int Science {get;set;}
+   public string Name {get;set;}
+   public int Total
+   {
+     get { return Maths + English + Science; }
+   }
+   public double Percent 
+   {
+     get { return Total / 3.0; } 
+    }
+   public string Grade
+    {
+      get
+        {
+           double per = Percent;
+           if(per>=70) return "A";
+           if(per>=60) return "B";
+           if(per>=50) return "C";
+           return "D";
+         }
+     }
+}
+
+class Test
+{
+  static void Main()
+   {
+   Student s = new Student { Roll = 10, Name = "Man", Maths = 99, Science = 79, English = 99 };
+   Console.WriteLine(s.Total + " " + s.Percent + " " + s.Grade);
+    }
+}
+
+Example:
+
+using System;
+
+public class Address
+{
+  public int Pin {get;set;}
+  public string City {get;set;}
+  public string Area {get;set;}
+}
+ 
+public class Category
+{
+   public int Id {get;set;}
+   public string Name {get;set;}
+}
+public class Product
+{
+   public int Id {get;set;}
+   public string Name {get;set;}
+   public bool Available {get;set; }
+   public decimal Rate {get;set;}
+   public decimal Qty {get;set;}
+   public decimal Discount {get;set;}
+   public decimal Amount
+    {
+      get { return Rate * Qty; }
+     }
+  public decimal DiscountAmount
+   {
+     get { return Amount * Dicount / 100; }
+    }
+  public decimal NetAmount 
+    {
+     get { return Amount - DiscountAmount; }
+     }
+   public DateTime Expire {get;set;}
+   public DateTime MfgDate {get;set;}
+   public string Company {get;set; }
+   public bool NonVeg {get;set;}
+   public string Unit {get;set;}
+}
+
+Product - id,name,available,qty,rate, etc
+
+
+Example: Create an "Address" class that will be used into "Student" class.
+
+
+So, a "class" used into another "class" is called "Composition".
+
+
+using System;
+
+public class Address
+{
+  public string City {get;set;}
+  public int Pin {get;set;}
+}
+
+public class Student
+{
+  public int Roll { get;set;}
+  public string Name {get;set;}
+  public Address Local {get;set;}
+  public Address Postal {get;set;}
+
+  //You can see; Local and Postal are two reference properties of "Address" class and we must have to
+  //create two objects very begining in constructor
+
+  public Student()
+   {
+      Roll = 0;
+      Name = "";
+      Local = new Address();
+      Postal = new Address();
+    }
+}
+
+public class Test
+{
+   static void Test1()
+    {
+        Student s = new Student();
+        s.Roll = 1;
+        s.Name = "Raj";
+        s.Local.City = "Meh";
+        s.Local.Pin = 342222;
+        s.Postal.City = "Pat";
+        s.Postal.Pin =333333;
+        Console.WriteLine( s.Roll + " " + s.Name );
+        Console.WriteLine( s.Local.City + " " + s.Local.Pin );
+        Console.WriteLine( s.Postal.City + " " + s.Postal.Pin );
+      }
+   static void Test2()
+    {
+        Student s = new Student
+         {
+          Roll = 1,
+          Name = "Raj",
+          Local = new Address { City = "Meh", Pin = 299299 },
+          Postal = new Address { City = "Pat", Pin = 399299 },
+          }
+        Console.WriteLine( s.Roll + " " + s.Name );
+        Console.WriteLine( s.Local.City + " " + s.Local.Pin );
+        Console.WriteLine( s.Postal.City + " " + s.Postal.Pin );
+   }
+ static void Test3()
+    {
+        Student s = new Student
+         {
+          Roll = 1,
+          Name = "Raj"
+          }
+        s.Local = new Address { City = "Meh", Pin = 299299 };
+        s.Postal = new Address { City = "Pat", Pin = 399299 };
+
+        Console.WriteLine( s.Roll + " " + s.Name );
+        Console.WriteLine( s.Local.City + " " + s.Local.Pin );
+        Console.WriteLine( s.Postal.City + " " + s.Postal.Pin );
+   }
+  static void Main()
+   {
+     Test1();
+     Test2();
+     Test3();
+    }
+}
+
+Example:
+
+using System;
+public class Point
+{
+  public int X {get;set;}
+  public int Y {get;set;}
+}
+public class Rect
+{
+  public Point Start {get;set;}
+  public Point End {get;set;}
+  public Rect()
+   {
+       Start = new Point();
+       End = new Point();
+    }
+}
+Write different Test methods to use the "Rect" class and call them in Main().
+
+Example:
+....
+public class Circle
+{
+  public Point Start {get;set;}
+  public double Radius {get;set;}
+  .....
+}
+
+Example: Student, Exam, Subject, StudentExam
+
+
+using System;
+
+public class Student
+{
+    public int Roll { get; set; }
+    public string Name { get; set; }
+}
+
+public class Exam
+{
+    public string Name { get; set; } // Mid, Final,  Test
+    public DateTime Start { get; set; }
+    public DateTime End { get; set; }
+}
+
+public class Subject
+{
+    public string Name { get; set; }
+    public int Total { get; set; }
+}
+
+public class StudentExam
+{
+    public Student Student { get; set; }
+    public Exam Exam { get; set; }
+    public Subject Subject { get; set; }
+    public int Obtain { get; set; }
+    public StudentExam()
+    {
+        Student = new Student();
+        Exam = new Exam();
+        Subject = new Subject();
+    }
+}
+public class TestPoint
+{
+    static void Main()
+    {
+        Exam exam = new Exam { Name = "1st Internal", Start = DateTime.Parse("1/5/2017"), End = DateTime.Parse("1/10/2017") };
+
+        Subject eng = new Subject { Name = "English", Total = 50 };
+        Subject mat = new Subject { Name = "Maths", Total = 50 };
+
+        Student s1 = new Student { Roll = 1, Name = "Man" };
+        Student s2 = new Student { Roll = 2, Name = "Tan" };
+
+        StudentExam se1 = new StudentExam
+        {
+            Exam = exam,
+            Student = s1,
+            Subject = eng,
+            Obtain = 30
+        };
+        StudentExam se11 = new StudentExam
+        {
+            Exam = exam,
+            Student = s1,
+            Subject = mat,
+            Obtain = 34
+        };
+
+        Console.WriteLine(se11.Student.Roll + " " + se11.Student.Name);
+        Console.WriteLine(se11.Exam.Name + " " + se11.Exam.Start + " to " + se11.Exam.End);
+        Console.WriteLine(se11.Subject.Name + " " + se11.Obtain + "/" + se11.Subject.Total);
+
+        var str = string.Format(@"
+Student whose name {0} and roll {1} has got
+{2}/{3} marks in {4} of exam '{5}' started
+between {6} to {7}
+",se11.Student.Name,
+se11.Student.Roll,
+se11.Obtain,
+se11.Subject.Total,
+se11.Subject.Name,
+se11.Exam.Name,
+se11.Exam.Start.ToString("dd-MM-yyyy"),
+se11.Exam.End.ToString("dd-MM-yyyy"));
+
+        Console.WriteLine(str);
+    }
+}
+
+Example: Linked list - An object that saves another object's memory reference and so on.
+
+public class Student
+{
+  public int Roll {get;set;}
+  public string Name {get;set;}
+
+  public Student Link {get;set;}
+}
+
+public class Test
+{
+    static void Main()
+    {
+        Student s1 = new Student { Roll = 10, Name = "Raj" };
+        Student s2 = new Student { Roll = 20, Name = "Taj" };
+        Student s3 = new Student { Roll = 1, Name = "Maj" };
+
+        s1.Link = s2;
+        s2.Link = s3;
+        Console.WriteLine(s1.Link.Link.Roll + " " + s1.Link.Link.Name);
+        Console.WriteLine(s1.Link.Roll + " " + s1.Link.Name);
+        Console.WriteLine(s1.Roll + " " + s1.Name);
+
+        Console.WriteLine("Loop...");
+        while( s1!=null)
+        {
+            Console.WriteLine(s1.Roll + " " + s1.Name);
+            s1 = s1.Link;
+        }
+    }
+}
+ 
+Example:  Student Linked list
+
+using System;
+
+public class Student
+{
+    public int Roll { get; set; }
+    public string Name { get; set; }
+
+    public Student Link { get; set; }
+}
+public class StudentList
+{
+    public Student Head { get; set; }
+    public Student Tail { get; set; }
+
+    public void Append(Student student)
+    {
+        if(Head == null)
+        {
+            Head = Tail = student;
+        }
+        else
+        {
+            Tail.Link = student;
+            Tail = student;
+        }
+    }
+    public void Append(int roll, string name)
+    {
+        Append(new global::Student { Roll = roll, Name = name });
+    }
+    public void AddAtHead(Student student)
+    {
+        if(Head == null)
+        {
+            Head = Tail = student;
+        }
+        else
+        {
+            student.Link = Head;
+            Head = student;
+        }
+    }
+    public void AddAtHead(int roll, string name)
+    {
+        AddAtHead(new global::Student { Roll = roll, Name = name });
+    }
+
+    public void DeleteAtHead()
+    {
+        if(Head!=null)
+        {
+            Head = Head.Link;
+        }
+    }
+    public void DeleteAtTail()
+    {
+        if (Head != null)
+        {
+            if(Head == Tail)
+            {
+                Head = Tail = null;
+            }
+            else
+            {
+                Student temp = Head;
+                while( temp.Link.Link!=null)
+                {
+                    temp = temp.Link;
+                }
+                temp.Link = null;
+                Tail = temp;
+            }
+        }
+    }
+    public void Print()
+    {
+        Student temp = Head;
+        while( temp!=null)
+        {
+            Console.WriteLine(temp.Roll + " " + temp.Name);
+            temp = temp.Link;
+        }
+    }
+}
+
+public class Test
+{
+    static void Main()
+    {
+        StudentList list = new global::StudentList();
+        list.Append(new global::Student { Roll = 1, Name = "Raj" });
+        list.Append(20, "Manish");
+        list.Append(5, "Ram");
+        list.Append(52, "Tisha");
+
+        list.AddAtHead(new Student { Roll = 90, Name = "Neha" });
+        list.AddAtHead(45, "Mohan");
+        list.Print();
+
+        Console.WriteLine("==== After deletion====");
+        list.DeleteAtHead();
+        list.DeleteAtHead();
+        list.DeleteAtTail();
+        list.DeleteAtTail();
+        list.Print();
+    }
+}
+
+Example: Create a Stack class has two methods namely - Push()  to add a node at begin of the list and the Pop() which removes the first node. (LIFO - Last In First Out)
+
+using System;
+
+public class Student
+{
+    public int Roll { get; set; }
+    public string Name { get; set; }
+
+    public Student Link { get; set; }
+}
+public class Stack
+{
+    public Student Head { get; set; }
+    public Student Tail { get; set; }
+
+     
+    public void Push(Student student)
+    {
+        if (Head == null)
+        {
+            Head = Tail = student;
+        }
+        else
+        {
+            student.Link = Head;
+            Head = student;
+        }
+    }
+    
+
+    public Student Pop()
+    {
+        Student temp = Head;
+        if (Head != null)
+        {
+            Head = Head.Link;
+        }
+        return temp;
+    }
+    public void Print()
+    {
+        Student temp = Head;
+        while (temp != null)
+        {
+            Console.WriteLine(temp.Roll + " " + temp.Name);
+            temp = temp.Link;
+        }
+    }
+}
+
+public class Test
+{
+    static void Main()
+    {
+        Stack stack = new global::Stack();
+        stack.Push(new global::Student { Roll = 10, Name = "X" });
+        stack.Push(new global::Student { Roll = 20, Name = "Y" });
+        stack.Push(new global::Student { Roll = 30, Name = "Z" });
+
+        Console.WriteLine("----------");
+        stack.Print();
+        Console.WriteLine("----------");
+        var popped = stack.Pop();
+        if (popped != null)
+            Console.WriteLine("Deleted node = > " + popped.Roll + " " + popped.Name);
+        popped = stack.Pop();
+        if (popped != null)
+            Console.WriteLine("Deleted node = > " + popped.Roll + " " + popped.Name);
+
+    }
+}
+
+
+Example: Create a Queue class that has Enqueue() function to append the node and Dequeue() to remove the first node. (FIFO  - First In First Out).
+
+
+using System;
+
+public class Student
+{
+    public int Roll { get; set; }
+    public string Name { get; set; }
+
+    public Student Link { get; set; }
+}
+public class Queue
+{
+    public Student Head { get; set; }
+    public Student Tail { get; set; }
+
+    public void Enqueue(Student student)
+    {
+        if (Head == null)
+        {
+            Head = Tail = student;
+        }
+        else
+        {
+            Tail.Link = student;
+            Tail = student;
+        }
+    }
+    public Student Dequeue()
+    {
+        var temp = Head;
+        if (Head != null)
+        {
+            Head = Head.Link;
+        }
+        return temp;
+    }
+    
+    public void Print()
+    {
+        Student temp = Head;
+        while (temp != null)
+        {
+            Console.WriteLine(temp.Roll + " " + temp.Name);
+            temp = temp.Link;
+        }
+    }
+}
+
+public class Test
+{
+    static void Main()
+    {
+        Queue queue = new Queue();
+
+        queue.Enqueue(new Student { Roll = 10, Name = "AA" });
+        queue.Enqueue(new Student { Roll = 20, Name = "BA" });
+
+        Console.WriteLine("-----");
+        queue.Print();
+        Console.WriteLine("-----");
+
+        queue.Enqueue(new Student { Roll = 30, Name = "CA" });
+
+        var deleted = queue.Dequeue();
+        if (deleted != null)
+            Console.WriteLine("Delete the node => " + deleted.Roll + " " + deleted.Name);
+        deleted = queue.Dequeue();
+        if (deleted != null)
+            Console.WriteLine("Delete the node => " + deleted.Roll + " " + deleted.Name);
+
+        Console.WriteLine("-----");
+        queue.Print();
+        Console.WriteLine("-----");
+    }
+}
+
+
+Example: Add "AddBEfore(roll,obj)" method into Student's linked list.
+....
+....
+public void AddBefore(int roll, Student obj)
+    {
+        if(Head ==null )
+        {
+            return;
+        }
+        if(Head.Roll == roll)
+        {
+            obj.Link = Head;
+            Head = obj;
+        }
+        Student temp = Head;
+        while( temp.Link != null && temp.Link.Roll !=roll)
+        {
+            temp = temp.Link;
+        }
+        if(temp.Link != null && temp.Link.Roll == roll)
+        {
+            obj.Link = temp.Link;
+            temp.Link = obj;
+        }
+    }
+....
+And also create AddAfter(roll, obj) method.
+
+And also create Delete(int roll) method which delete a specific node.
+
+www.github.com
+
+Example : Geneology - represent Person name and his/her father-mother (you can also use age, gender etc)
+
+using System;
+
+public class Person
+{
+    public string Name { get; set; }
+    public Person Father { get; set; }
+    public Person Mother { get; set; }
+}
+
+public class Test
+{
+    static void Main()
+    {
+        Person gf1 = new Person { Name = "M1" };
+        Person gm1 = new Person { Name = "M2" };
+
+        Person ch1 = new Person { Name = "V1", Father = gf1, Mother = gm1 };
+        Person wch1 = new Person { Name = "WV1" };
+        Person ch2 = new Person { Name = "V2", Father = gf1, Mother = gm1 };
+        Person wch2 = new Person { Name = "WV2" };
+
+        Person ch3 = new Person { Name = "C1", Father = ch1, Mother = wch1 };
+
+        Console.WriteLine(ch3.Name + " " + ch3.Father.Name + " " + ch3.Father.Father.Name);
+        Console.WriteLine(string.Format("Mother of {0} is {1}",ch3.Name,ch3.Mother.Name));
+
+    }
+}

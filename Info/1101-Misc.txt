@@ -1,0 +1,23 @@
+For example,
+   markup means a way to separate one thing from another.
+   We generally uses , or blank or special character to separate the items. In English language we use . (period) to separate the sentences and comma (,) to split the sentence.
+
+ Example: 10,rajesh,1,A are the data of student and we mentally uses labels - roll, name, standard and division.
+    In case, if we add markup (Just like HTML tags)
+
+<student>
+  <roll>10</roll>
+  <name>A</name>
+  <standard>1</standard>
+  <division>A</division>
+</student>
+
+Example:
+
+<important category="definition" subject="web">
+   HTML - HTML is a standard to present data on the web. It is markup language not a programming language.
+</important>
+
+HTML standard is maintained (proposed and draft and maintainace) by the non profit organizations - World Wide Web Consortium (W3C) and HTML working group. (Visit www.w3c.org)
+
+

@@ -1,0 +1,317 @@
+Access controls and class design
+================================
+We will use the access control modifiers to set visibility of the class members; so we can restrict or allow user to read or write or both actions on an object.
+
+Rules to design the class:
+
+1. Fields must be private and should have lower case and underscore prefix
+2. Methods must be public - Use "Set" prefix for the Method name to save data into object
+                            Use "Get" prefix for the method name to retrive/return data from the object.
+
+Example:
+
+using System;
+
+public class Employee
+{
+    //Fields or Data members - must be always private
+    private  int _id;
+    string _name; //default access is private
+    private decimal _salary;
+
+
+    //Methods - To store data and retrieve data
+    //        - These methods are known as Getter and Setter and 
+    //          they must be public                
+    public void SetId(int id)
+    {
+        if (id >= 1 && id <= 100)
+          {
+            _id = id;
+           }
+    }
+    public int GetId()
+    {
+        return _id;
+    }
+
+    public void SetName(string name)
+    {
+        if (name != null && name.Length >= 1 && name.Length <= 100)
+            _name = name;
+    }
+    public string GetName()
+    {
+        return _name;
+    }
+
+    public void SetSalary(decimal salary)
+    {
+        if (salary >= 1000 && salary <= 1000000)
+            _salary = salary;
+    }
+    public decimal GetSalary()
+    {
+        return _salary;
+    }
+
+}//End of Employee
+
+class Test
+{
+    static void Main()
+    {
+        Employee a = new Employee();
+        
+        a.SetId(-10);
+        a.SetName(null);
+        a.SetSalary(-1000);
+        Console.WriteLine("{0}  {1}  {2}",a.GetId(),a.GetName(), a.GetSalary());
+
+        a.SetSalary(9000);
+        a.SetId(10);
+        a.SetName("Rajesh Shah");
+        Console.WriteLine("{0}  {1}  {2}", a.GetId(), a.GetName(), a.GetSalary());
+    }
+}
+
+Example: Design the class to store student data
+
+public class Student
+{
+  //field
+  private int _roll;
+  private string _name;
+  private int _english,_maths,_science;
+
+  //methods - getter & setter
+  // roll must be 1 to 50
+  // name length between 5 to 100
+  // marks must be to 0 to 100
+
+  public void SetRoll(int roll)
+  {
+    if(roll>=1 && roll<=50)
+     {
+      _roll = roll;
+      }
+   }
+  public int GetRoll()
+   {
+     return _roll;
+    }
+  public void SetName( string name )
+  {
+    if(name!=null && name.Length>=5 && name.Length<=100)
+     {
+       _name = name;
+     }
+  }
+ public String getName()
+   {
+    return _name;
+   }
+ public void setEnglish(int english)
+  {
+     if(english>=0 && english<=100)
+       {
+        _english = english;
+        }
+    }
+ public int GetEnglish()
+  {
+   return _english;
+   }
+
+ public void setMaths(int maths)
+  {
+     if(maths>=0 && maths<=100)
+       {
+        _maths = maths;
+        }
+    }
+ public int GetMaths()
+  {
+   return _maths;
+   }
+
+ public void setScience(int science)
+  {
+     if(science>=0 && science<=100)
+       {
+        _science = science;
+        }
+    }
+ public int GetScience()
+  {
+   return _science;
+   }
+}
+
+public class Test
+{
+  static void Main()
+   {
+    Student s = new Student();
+    s.SetRoll(4);
+    s.SetName("Rajesh");
+    s.SetEnglish(50);
+    s.SetMaths(78);
+    s.SetScience(77);
+    Console.WriteLine("Roll.........: " + s.GetRoll()); 
+    Console.WriteLine("Name.........: " + s.GetName());
+    Console.WriteLine("English......: " + s.GetEnglish());
+    Console.WriteLine("Maths........: " + s.GetMaths());
+    Console.WriteLine("Science......: " + s.GetScience());
+   }
+}
+
+Example: Add extra methods to the classes. In addition to the getter/setter, we have to add some other methods.
+
+using System;
+public class Student
+{
+    //field
+    private int _roll;
+    private string _name;
+    private int _english, _maths, _science;
+
+    //methods - getter & setter
+    // roll must be 1 to 50
+    // name length between 5 to 100
+    // marks must be to 0 to 100
+
+    public void SetRoll(int roll)
+    {
+        if (roll >= 1 && roll <= 50)
+        {
+            _roll = roll;
+        }
+    }
+    public int GetRoll()
+    {
+        return _roll;
+    }
+    public void SetName(string name)
+    {
+        if (name != null && name.Length >= 5 && name.Length <= 100)
+        {
+            _name = name;
+        }
+    }
+    public String GetName()
+    {
+        return _name;
+    }
+    public void SetEnglish(int english)
+    {
+        if (english >= 0 && english <= 100)
+        {
+            _english = english;
+        }
+    }
+    public int GetEnglish()
+    {
+        return _english;
+    }
+
+    public void SetMaths(int maths)
+    {
+        if (maths >= 0 && maths <= 100)
+        {
+            _maths = maths;
+        }
+    }
+    public int GetMaths()
+    {
+        return _maths;
+    }
+
+    public void SetScience(int science)
+    {
+        if (science >= 0 && science <= 100)
+        {
+            _science = science;
+        }
+    }
+    public int GetScience()
+    {
+        return _science;
+    }
+
+    //Extra other methods
+
+    //1. Returns total of three subjects
+    public int GetTotal()
+    {
+        return _maths + _english + _science;
+    }
+    //2. Returns avarage of marks
+    public decimal GetPercent()
+    {
+        return GetTotal() / 3.0m;
+    }
+
+    //3. Returns Grade
+    public string GetGrade()
+    {
+        decimal per = GetPercent();
+        if (per > 70) return "A";
+        if (per > 60) return "B";
+        if (per > 50) return "C";
+        return "D";
+    }
+    //4. Print the student data
+    public void Print()
+    {
+        Console.WriteLine("Roll.........: " + GetRoll());
+        Console.WriteLine("Name.........: " + GetName());
+        Console.WriteLine("English......: " + GetEnglish());
+        Console.WriteLine("Maths........: " + GetMaths());
+        Console.WriteLine("Science......: " + GetScience());
+        Console.WriteLine("Total........: " + GetTotal());
+        Console.WriteLine("Percentage...: " + GetPercent().ToString("N2"));
+        Console.WriteLine("Grade........: " + GetGrade());
+    }
+    //5. Change marks of three subjects 
+    public void setMarks(int maths, int english, int science)
+    {
+        SetMaths(maths);
+        SetEnglish(english);
+        SetScience(science);
+    }
+}
+class Test
+{
+    static void Main()
+    {
+        Student a = new Student();
+        a.SetRoll(10);
+        a.SetName("Rajesh Shah");
+        a.setMarks(66, 77, 88);
+        a.Print();
+        Console.WriteLine(a.GetTotal() + " " + a.GetPercent());
+    }
+}
+
+Example:
+A class "Emp" has id, name and basic salary fields.
+
+Write getter/setter and following extra methods:
+  1. GetDa() - reutrn 70% of basic salary
+  2. GetHra() - returns 1000 if basic salary>=1 and <=5000
+                        2000 if basic salary>5000 and <=10000
+                        3000 if basic salary >10000
+  3. GetProfTax() - returns 500 is salary>10000
+                            200    salary>5000
+                             50    salary>1000
+                                  other wise 0
+  4. GetIt() - returns income tax 5% for basic salary>10000
+                                  2                  >5000
+                                  0% for below 5000
+  5. GetGrossSalary() - returns sum of basic salary + GetDa() + GetHra()
+  6. GetDeduct() - returns sum of GetProfTax() + GetIt()
+  7. GetNetSalary() - returns GetGrossSalary() - GetDeduct()
+
+
+

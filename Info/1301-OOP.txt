@@ -1,0 +1,125 @@
+﻿Object Oriented Paradigm (PERaDAIM) - OOP
+======================================================================================================================
+
+What is an OOP?
+
+   It is a program design technique or methodology that provides - 
+        1. Code reusability - Write one and reuse many times
+        2. Code Extendability - Improve or enhance to existing code without affecting its current structure
+        3. Real word polymorphism ( બહુરૂપતા  ) એક વ્યક્તિ એક થી વધુ અલગ અલગ કર્યો કરી શકે તેને બહુરૂપતા કહેવાય - 
+              For Example - A "program" has many forms to perform one or more tasks.
+
+   To understand the OOP, we must have to understand its three important features:
+	1. Encapsulation & Abstraction
+        2. Inheritance & Generics & Composition
+        3. Polymorphism
+		
+
+   1. Encapsulation & Abstraction --- These "terms" describes and explains the "design of your data types".
+	What is data type? - A data type is a first thought towards the solving a problem. To solve a problem,
+				think about the TYPE or datatype. 
+				For example, int, float, char, double etc are very fundamental types to constructs
+				the custom or user defined types to address complex problems/programs.
+
+				We've following TYPES or We must have following TYPES to solve the complex 				issues/problems.
+
+					simple types - int,char,float,double etc
+							||
+							\/
+						     Fixed lenght & Dynamic Arrays (array and pointers)
+							||
+							\/
+						      Functions and user-defined datatypes
+
+				In .net CTS, we have the very same paradigm. We've simple types and complex and very
+				very complex TYPES.
+
+				Each TYPE; whether it is simple or complex; it's design is understood via Encapsulation
+				and Abstraction.
+
+	Encapsulation - It wraps data skelton (structure) and associate actions (methods or functions). In other words,
+			to put data description and actions on these data together is called "Encapsulation".
+
+			Encapsulation is kinda a "cover or envelope" that holds something in it (and something is "data 			description & associate actions).
+
+			Example:    10-01-2017  <-- Data
+                                    xx-xx-xxxx  <-- data structure		Actions - date_diff,
+											  date_validation
+											  get_day, set_day etc
+
+			In .NET, we will use class, interface, struct, enum, delegate keywords to define 			the "Encapsulation".
+
+			For example,
+
+				class Date
+				{
+				   byte day,month,year;
+                                   void date_diff() {}
+                                   void date_validation() {}
+                                   ...
+                                  }
+        Abstraction - It separates the user's code from the developer's code; it draws an outline between user of the
+			code and creator of the code so the user can easily use the code without knowing the 
+			complex background details of the code. Likewise, a tailor need not to worry about "threads",
+			"clothes", "niddles", "sewing machine" in order to design the clothes. All these things exists
+			in the world and the tailor choose them and use them as needed without dweling into the 
+			detailed information about these tools & things.
+			There are two types abstractions:
+				1. Procedure abstraction - e.g printf, scanf etc functions in C standard library. We
+					do not know how these functions are created? what kind of logic is used? and 
+					so on but also we use them frequently in our program.
+
+				2. Data abstraction - e.g int, char, float , arrays , pointer, functions etc are
+					example of Data abstraction; We use these things but hardly know them (internal
+					things or make).
+
+
+			In C# language (CLS compliant), we've keywords - public, private, internal, protected to
+			define the "abstraction" in our TYPES (class,interface, struct, enum and delegate).
+
+			So, the "abstraction" is achieved via "encapsulation" and keywords (public, private, internal,
+			protected) that hide or show things.
+
+ NOTE: We will learn Inheritance, Generics, Composition and Polymorphism in later sessions.
+
+
+ What is an "Object"?
+ =====================
+ 
+   Each "thing" is an object.
+
+   Each "object" has an identity.
+
+
+   "In computing, an object means allocated memory; i.e. collection of allocated bytes".
+
+    To reserved 1 or 2 or more bytes from the RAM to store data is called an "object.
+
+    The size of an object can be vary from 1 byte to 2 GB or even 4 GB.
+
+   	For example, in C language we've created objects via,
+
+			int a,b;     Two objects; each has 4 bytes length
+			int nos[5];  Five objects; each has 4 bytes length 
+
+			struct Date {
+                           int day,month,year,hour,minute,second
+                        }
+                   
+                         Date a,b,c;   Three objects of "Date" type; each object has 24 bytes length
+
+
+    10   value or number or data of TYPE "int" (Integral)
+   10.10 value or number of real (double or float)
+    'a'  value of char type
+    "Hello" value of string type
+    10-10-2002  value of date type
+
+  10, 10.10, 'a', "Hello"  10-10-2002 are objects and each object has an identity or TYPE or CLASS or Category.
+
+
+  That means we must have to focus on "data" or "object" in order to solve the problems. Naturally, each object has an identity or TYPE so firstly we need to understand the TYPE/DATATYPE and may be we have to use directly if they are available or we've to create them from the scratch (very begining).
+
+
+		
+

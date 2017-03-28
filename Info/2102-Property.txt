@@ -1,0 +1,130 @@
+Property Methods
+==================
+
+A "property" method is a combined representation of "GetXXXX" and "SetXXXX" methods.
+
+Syntax:
+
+access  Type PropertyName
+{
+  get
+    {
+      // return data
+     }
+  set
+   {
+     //set data
+   }
+}
+
+1. Property has two "accessors" - get {} and set {}
+2. get {} accessor always returns value of the Type specified at property declaration.
+3. set {} accessor has automatic parameter called  "value" of the Type specified at property declaration.
+4. A property can either "get" or "set" or "both" accessors.
+   If there is "get" accessor then it is called readonly.
+   if there is "set" accessor then it is called writeonly. 
+   And if there is 'get' and 'set' then it is called read-write property.
+
+= assignment operator invoke "set" accessor when it is used to assign value like a variable.
+  e.g
+      obj.PropertyName = value;  will always call the "set" accessor
+
+And any other way of the use of "Property" will invoke the "get" accessor.
+
+Example:
+
+public class Student
+{
+    int _roll;
+    string _name;
+    int _english, _maths, _science;
+
+    static string _school;
+
+    public static string School
+    {
+        get { return _school;  }
+        set { _school = value; }
+    }
+
+    public int Roll
+    {
+        set
+        {
+            if(value>=1 && value<=100)
+            _roll = value;
+        }
+        get
+        {
+            return _roll;
+        }
+    }
+    public string Name
+    {
+        get
+        {
+            return _name;
+        }
+        set
+        {
+            _name = value;
+        }
+    }
+
+    public int English
+    {
+        get { return _english; }
+        set { _english = value; }
+    }
+    public int Maths
+    {
+        get { return _maths; }
+        set { _maths = value; }
+    }
+    public int Science
+    {
+        get { return _science; }
+        set { _science = value; }
+    }
+    public int Total
+    {
+        get { return _english + _maths + _science; }
+    }
+    public double Percentage
+    {
+        get { return Total / 3.0; }
+    }
+    public string Grade
+    {
+        get
+        {
+            double p = Percentage;
+            if (p >= 70) return "A";
+            if (p >= 60) return "B";
+            return "C";
+        }
+    }
+
+}
+class Test
+{
+    static void Main()
+    {
+        Student.School = "ABC School";
+        Student a = new Student();
+        a.Roll = 10;
+        a.Name = "Mahesh";
+        a.Maths = 77;
+        a.Science = 67;
+        a.English = 56;
+
+        Console.WriteLine(Student.School);
+        Console.WriteLine(a.Roll + " " + a.Name);
+        Console.WriteLine(a.Maths + " " + a.Science + " " + a.English);
+        Console.WriteLine(a.Total + " " + a.Percentage + " " + a.Grade);
+    }
+}
+
+Practice : Create Point, Rect, Circle classes and add properties
+           Employee class
+           Product class

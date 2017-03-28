@@ -1,0 +1,48 @@
+The .Net Framework
+===================
+
+The .net framework is a programming environment from Microsoft to develop, deploy and execute the applications in highly distributed environment of the Internetwork.
+
+The .net framework is also an open source actively backed by the Microsoft.
+
+What is the meaning of "Framework" or "Platform"?
+
+    The term "Framework" means "a structure for anything that is to be done within the defined range or rules". The 	Framework is also known as "Platform". In computer programming, an operating system is the first framework that we encountered very initially. The Operating system (Windows, Linux, Unix, Mac etc) offers a systematic ways (boundaries & rules) to develop and deploy the applications. Mostly, all operating systems uses C and C++ as standard programming language to write the code. OS has functions/class libraries which are used via the C/C++ programming and finally the OS runs these apps.
+
+C and C++ languages are very easy to learn & program but lack of practice or knowledge, we are not able to write efficient code (for mobile, web, window/desktop or service category). However, there are other sub frameworks/platforms exists which ease the software development in compare of the operating systems. These sub frameworks are - .NET, Java, PHP, Python and many more. 
+
+
+Languages ->   C#		Java		
+High level     VB.NET		Scala		Php   		C and C++   ....
+                |                 |             |			|
+		|		  |		|			|
+		V                 V             V                       |
+ Sub         .NET Framework   Java Framework   PHP Framework		|
+Frameworks      |                 |             |			|
+		|		  |		|			|
+		V                 V             V                       V
+	      -----------------------------------------------------------
+		The Operating Systems (Win/Linux/Mac/Unix) Libraries
+				and Runtime  
+The Main Framework
+              ------------------------------------------------------------
+	        
+
+The frameworks tell us that you should develop the code as per our (framework's) guideline (rules & limitations) and we will handle all tasks on behalf of you.
+
+	"Please, don't call us. We will call you" --- is a sound of platform/frameworks and this kind of approach is known as "IoC - Inversion Of Control".
+		
+             	   
+The Operating System - a main or primary framework
+---------------------------------------------------
+We need to write code in C/C++ language for any OS but we need to compile the source code for each different OS. The compiled code for Windows OS cannot be executed perfactly at Linux and other OSes. That means the "main or priamry" framework need some extra attention while developing app (compile each app for diff OS & versions).
+
+The sub frameworks and cross platform development
+-----------------------------------------------------
+The main advantage of the selection of "sub framework - .net framework, Java, PHP etc" is a developer can develop the application without targeting a particular OS; In fact, the code is target to a specific sub framework. This way you can develop code for all different OS and this kind of development is called "Cross Platform Development".
+
+For example, we can develop "ASP.NET" App and you can run on varities of OS by just downloading appropriate version of .Net Framework for a specific OS.
+	.Net framework for Windows/Linux/Mac
+        Java framework for Windows/Linux/Mac and so on.
+
+

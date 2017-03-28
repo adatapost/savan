@@ -1,0 +1,30 @@
+Content - ASP.NET MVC Web Application
+============================================================
+1. .Net Framework/platform - fundamental
+2. .Net Types System
+3. C# Language - class, interface, delegate, arrays, struct, enum, attributes
+4. Exception, Debug & Diagnostics, Thread/Concurrency APIs
+5. Text Encoding, Globlization, Loczalization, IO, Network APIs
+6. Database APIs - ADO.NET, EntityFramework (EDM) - Database & Code first
+7. XML, JSON Parsers
+8. Unit Testing Framework
+9. Generics, Collection Framework, LINQ, Extension Methods, Partial classes
+10. Html, CSS, JavaScript, CSS & JavaScript Framework-Bootstrap, jQuery
+11. ASP.NET One - Razor view engine + Web Page 
+12. ASP.NET MVC + Web API
+
+Self Study : Html, CSS, JavaScript, Database (Queries, Stored procedures, Functions), Object Oriented Program Design.
+
+Tools:  Visual Studio
+         Git client
+         Node Js Environment and Node Package Manager
+	 Nuget.org - Nuget Package Manager
+	 www.github.com -- Git repository
+
+Fees : 19000.00
+Duration: Max 6 Months
+
+
+What is "Git"?
+---------------
+Git is a protocol (rules) to control the source code. The Git client tools allow us to save, update, undo/redo, distribute, merge our source code (projects).  "Git" protocol and tool is introduced by the creator of "Linux Operation System"; Linus Torvald.

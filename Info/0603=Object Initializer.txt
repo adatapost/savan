@@ -1,0 +1,57 @@
+Object Composition - To use classes to define new classes
+=========================================================
+
+In fact our data and data structure are always complex and we need to rethink the class design everytime we see complexity.
+
+For example,
+
+We've a simple class called "Point"
+
+public class Point
+{
+  private int _x,_y;
+  public int X { get { return _x; } set { _x=value; } }
+  public int Y { get { return _y; } set { _y=value; } }
+}
+
+
+We can use "Properrties" and following syntax to initialize the object.
+
+Syntax: Object initializer
+
+ClassName varName = new ClassName
+{
+  Property1 = value1,
+  Property2 = value2,
+  ....
+};
+
+So, out code in Main() method:
+
+public class TestPoint
+{
+  static void testOne() 
+   {
+      //Creates an object
+      Point p = new Point();  
+      //Assign properties
+      p.X = 90;
+      p.Y = 40;
+      Console.WriteLine(p.X + " " + p.Y);
+   
+       //Creates an object and intialize the properties
+      Point q = new Point 
+       {
+         X = 900,
+         Y =1000
+        };
+      Console.WriteLine(q.X + " " + q.Y);        
+      Point r = new Point { X = 90 };
+      Console.WriteLine(r.X + " " + r.Y);        
+    }
+
+  static void Main()
+   {
+      testOne();
+    }
+}

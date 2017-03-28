@@ -1,0 +1,39 @@
+The Visual Studio and C# Programming Language
+==============================================================================================================
+
+What is Visual Studio? (VS, current version is 2015)
+----------------------------------------------------
+Visual Studio is an IDE - Integrated Develpment Environment.
+
+It integrates CLS compliant languages, CTS, and CLR. It also provide number of tools through which we can easily develop and rapidly develop the applications.
+
+Visual Studio assists us in many ways:
+
+ 1. Allow us to write code - copy+paste+ format+create files/folders + add remove resources - 
+ 2. Compile the one or more code files using "build tool" - A tool that produce MSIL code (assemblies) using C# or
+	any CLS compliant language.
+ 3. Debug the applications
+ 4. Design the database
+ 5. Source code control - Source control protocols - Git, Microsoft Team Foundation, Mercury, SVN
+ 6. HTML, XML designer and many more useful tools.
+
+The Project system and visual studio
+=====================================
+A "project" is an application structure which describes,
+ 1. The nature of application or application type - web, window, phone, console or service application
+ 2. It includes reference of neccessary CTS libraries or assemblies e.g mscorlib.dll, System.Data.Dll etc
+    Different applications uses different set of CTS dlls.
+ 3. It includes a reference or path to the language (C# or VB etc) and it uses "build-tool" to compile your
+	code easily and produce .exe or .dll assemblies
+ 4. It offers two types builds - Debug and Release.
+
+     Debug means an application run by the developers to examine or test the behavior and test whether it is developed
+     as per their or customer's requirement or not. Debug applications contains .net framework debug & diagnostic   
+     libraries that assists us (developers) to understand what is happing inside the code when that application
+	is being executed/run.
+
+	Debug applications allow us to set break points, step-in/out execution of code and learn how much memory being
+	used, how many processes are there and many more things.
+
+        Release build means a final build for the deployment (ready to be used by customers/clients). This will removes
+        debug & diagnostic assistance from the code and the "Release" version of code will be smaller in size.
